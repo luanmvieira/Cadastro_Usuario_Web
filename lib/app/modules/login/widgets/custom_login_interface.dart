@@ -45,7 +45,7 @@ class CustomLogin extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      "Olá Visitante",
+                      "Olá Visitante !",
                       style: GoogleFonts.openSans(
                           color: const Color(0xff1F1F30),
                           fontSize: 35.0,
