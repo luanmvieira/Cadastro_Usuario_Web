@@ -1,4 +1,5 @@
-import 'package:cadastro_usuario_web/app/modules/auth/auth_Page.dart';
+
+import 'package:cadastro_usuario_web/app/modules/auth/auth_init.dart';
 import 'package:cadastro_usuario_web/app/modules/auth/store/auth_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
