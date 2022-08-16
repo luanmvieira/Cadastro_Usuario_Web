@@ -14,7 +14,8 @@ dependencies:
 
   #validator
   brasil_fields: ^1.0.0
-  email_validator: ^2.0.1
+  email_validator: ^2.1.16
+  cpf_cnpj_validator: ^2.0.0
 
   #Biblioteca para responsividade
   responsive_builder: ^0.4.2

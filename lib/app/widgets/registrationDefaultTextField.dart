@@ -10,6 +10,7 @@ class RegistrationDefaultTextField extends StatelessWidget {
   final List<TextInputFormatter>? textInputFormatter;
   final Function? validation;
   final bool enabled;
+  final int length;
 
   const RegistrationDefaultTextField(
       {Key? key,
@@ -20,12 +21,14 @@ class RegistrationDefaultTextField extends StatelessWidget {
         this.textInputFormatter,
         this.validation,
         required this.enabled,
+        required this.length,
       })
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLength:length,
       enabled: enabled,
       style: GoogleFonts.nunito(
         color: Colors.grey[700],
@@ -38,6 +41,7 @@ class RegistrationDefaultTextField extends StatelessWidget {
       cursorColor: Colors.black,
       controller: controller,
       decoration: InputDecoration(
+        counterText: "",
         hintStyle: TextStyle(color: Colors.black),
         hintText: hintText,
         filled: true,
