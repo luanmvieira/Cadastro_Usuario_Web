@@ -9,40 +9,18 @@ part of 'registration_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$RegistrationStore on _RegistrationStoreBase, Store {
-  late final _$valueAtom =
-      Atom(name: '_RegistrationStoreBase.value', context: context);
+  late final _$retornarInfosCepAsyncAction =
+      AsyncAction('_RegistrationStoreBase.retornarInfosCep', context: context);
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
-  }
-
-  @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
-    });
-  }
-
-  late final _$_RegistrationStoreBaseActionController =
-      ActionController(name: '_RegistrationStoreBase', context: context);
-
-  @override
-  void increment() {
-    final _$actionInfo = _$_RegistrationStoreBaseActionController.startAction(
-        name: '_RegistrationStoreBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_RegistrationStoreBaseActionController.endAction(_$actionInfo);
-    }
+  Future retornarInfosCep(String cep) {
+    return _$retornarInfosCepAsyncAction.run(() => super.retornarInfosCep(cep));
   }
 
   @override
   String toString() {
     return '''
-value: ${value}
+
     ''';
   }
 }

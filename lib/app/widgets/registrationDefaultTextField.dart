@@ -10,6 +10,7 @@ class RegistrationDefaultTextField extends StatelessWidget {
   final List<TextInputFormatter>? textInputFormatter;
   final Function? validation;
   final bool enabled;
+  final bool obscure;
   final int length;
 
   const RegistrationDefaultTextField(
@@ -22,12 +23,14 @@ class RegistrationDefaultTextField extends StatelessWidget {
         this.validation,
         required this.enabled,
         required this.length,
+        required this.obscure,
       })
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: obscure,
       maxLength:length,
       enabled: enabled,
       style: GoogleFonts.nunito(

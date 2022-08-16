@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cadastro_usuario_web/app/modules/registration/store/registration_store.dart';
 import 'package:cadastro_usuario_web/app/widgets/registrationDefaultTextField.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +18,10 @@ class RegistrationDesktop extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 0.80,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.0),
-          color: Colors.deepPurpleAccent,//Color(0xff1F1F30)
+          color: Colors.deepPurpleAccent, //Color(0xff1F1F30)
         ),
-        child: Expanded(
-            flex: 1,
-            child: Observer(
-                builder: (_) => Container(
+        child: Observer(
+            builder: (_) => Container(
                   height: MediaQuery.of(context).size.height * 0.85,
                   width: MediaQuery.of(context).size.width * 0.80,
                   decoration: const BoxDecoration(
@@ -32,13 +31,13 @@ class RegistrationDesktop extends StatelessWidget {
                   child: Column(
                     children: [
                       Center(
-                          child: Text(
-                            "Cadastro",
-                            style: GoogleFonts.openSans(
-                                color: const Color(0xff1F1F30),
-                                fontSize: 35.0,
-                                fontWeight: FontWeight.w800),
-                          ),
+                        child: Text(
+                          "Cadastro",
+                          style: GoogleFonts.openSans(
+                              color: const Color(0xff1F1F30),
+                              fontSize: 35.0,
+                              fontWeight: FontWeight.w800),
+                        ),
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,17 +49,19 @@ class RegistrationDesktop extends StatelessWidget {
                               child: Column(
                                 children: [
                                   RegistrationDefaultTextField(
-                                      hintText: "Nome Completo",
-                                      length: 50,
-                                      textInputType: TextInputType.text,
-                                      controller: _controller.nameController,
-                                      enabled: true,
-                                  validation: (String value) {
-                                    if (_controller.validateNameField(value) ==
-                                        false) {
-                                      return 'Insira o seu Nome e Sobrenome';
-                                    }
-                                  },
+                                    hintText: "Nome Completo",
+                                    length: 50,
+                                    textInputType: TextInputType.text,
+                                    controller: _controller.nameController,
+                                    enabled: true,
+                                    obscure: false,
+                                    validation: (String value) {
+                                      if (_controller
+                                              .validateNameField(value) ==
+                                          false) {
+                                        return 'Insira o seu Nome e Sobrenome';
+                                      }
+                                    },
                                   ),
                                   SizedBox(height: 15),
                                   RegistrationDefaultTextField(
@@ -72,11 +73,13 @@ class RegistrationDesktop extends StatelessWidget {
                                     ],
                                     controller: _controller.cpfController,
                                     validation: (String value) {
-                                      if (_controller.validateCPFField(value)==
+                                      if (_controller.validateCPFField(value) ==
                                           false) {
                                         return 'Insira um CPF válido';
                                       }
-                                    }, enabled: true,
+                                    },
+                                    enabled: true,
+                                    obscure: false,
                                   ),
                                   SizedBox(height: 15),
                                   RegistrationDefaultTextField(
@@ -92,20 +95,25 @@ class RegistrationDesktop extends StatelessWidget {
                                           false) {
                                         return 'Insira o PIS corretamente';
                                       }
-                                    }, enabled: true,
+                                    },
+                                    enabled: true,
+                                    obscure: false,
                                   ),
                                   SizedBox(height: 15),
                                   RegistrationDefaultTextField(
-                                    length:60,
+                                    length: 60,
                                     hintText: "E-mail",
                                     textInputType: TextInputType.text,
                                     controller: _controller.emailController,
                                     validation: (String value) {
-                                      if (_controller.validateEmailField(value) ==
+                                      if (_controller
+                                              .validateEmailField(value) ==
                                           false) {
                                         return 'Insira o E-mail corretamente';
                                       }
-                                    }, enabled: true,
+                                    },
+                                    enabled: true,
+                                    obscure: false,
                                   ),
                                   SizedBox(height: 15),
                                   RegistrationDefaultTextField(
@@ -114,14 +122,16 @@ class RegistrationDesktop extends StatelessWidget {
                                     textInputType: TextInputType.text,
                                     controller: _controller.passwordController,
                                     validation: (String value) {
-                                      if (_controller.validatePassWordField(value) ==
+                                      if (_controller
+                                              .validatePassWordField(value) ==
                                           false) {
-                                        return 'Insira a Senha corretamente';
+                                        return 'Insira mais de 8 caracteres';
                                       }
-                                    }, enabled: true,
+                                    },
+                                    enabled: true,
+                                    obscure: true,
                                   ),
                                 ],
-
                               ),
                             ),
                           ),
@@ -144,10 +154,12 @@ class RegistrationDesktop extends StatelessWidget {
                                     suffix: Padding(
                                       padding: const EdgeInsets.only(right: 10),
                                       child: GestureDetector(
-                                        child: Icon(Icons.search,
+                                        child: Icon(
+                                          Icons.search,
                                           size: 17,
                                         ),
                                         onTap: () {
+                                          _controller.retornarInfosCep(_controller.cepController.text);
 
                                         },
                                       ),
@@ -157,26 +169,30 @@ class RegistrationDesktop extends StatelessWidget {
                                     filled: true,
                                     fillColor: Colors.white.withOpacity(0.6),
                                     alignLabelWithHint: true,
-                                    contentPadding:EdgeInsets.fromLTRB(20, 18, 20, 18),
+                                    contentPadding:
+                                        EdgeInsets.fromLTRB(20, 18, 20, 18),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(25),
                                     ),
                                     focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(18)),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(18)),
                                       borderSide: BorderSide(
                                         width: 1.18,
                                         color: Colors.black,
                                       ),
                                     ),
                                     disabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(18)),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(18)),
                                       borderSide: BorderSide(
                                         width: 1.2,
                                         color: Colors.black,
                                       ), //Color(0xff1a1919)
-                                    ) ,
+                                    ),
                                     enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(18)),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(18)),
                                       borderSide: BorderSide(
                                         width: 1.2,
                                         color: Colors.grey,
@@ -189,106 +205,149 @@ class RegistrationDesktop extends StatelessWidget {
                                   length: 20,
                                   hintText: "Logradouro",
                                   textInputType: TextInputType.text,
-                                  controller: _controller.passwordController,
+                                  controller: _controller.logradouroController,
                                   validation: (String value) {
-                                    if (_controller.validatePassWordField(value) ==
+                                    if (_controller
+                                            .validateLogradouroField(value) ==
                                         false) {
-                                      return 'Insira a Senha corretamente';
+                                      return 'Insira o Logradouro corretamente';
                                     }
-                                  }, enabled: true,
+                                  },
+                                  enabled: true,
+                                  obscure: false,
                                 ),
                                 SizedBox(height: 15),
                                 RegistrationDefaultTextField(
                                   length: 20,
                                   hintText: "Numero",
                                   textInputType: TextInputType.text,
-                                  controller: _controller.passwordController,
+                                  controller: _controller.numeroController,
                                   validation: (String value) {
-                                    if (_controller.validatePassWordField(value) ==
+                                    if (_controller
+                                            .validateNumeroField(value) ==
                                         false) {
-                                      return 'Insira a Senha corretamente';
+                                      return 'Insira o Numero corretamente';
                                     }
-                                  }, enabled: true,
+                                  },
+                                  enabled: true,
+                                  obscure: false,
                                 ),
                                 SizedBox(height: 15),
                                 RegistrationDefaultTextField(
                                   length: 20,
                                   hintText: "Bairro",
                                   textInputType: TextInputType.text,
-                                  controller: _controller.passwordController,
+                                  controller: _controller.bairroController,
                                   validation: (String value) {
-                                    if (_controller.validatePassWordField(value) ==
+                                    if (_controller
+                                            .validateLogradouroField(value) ==
                                         false) {
-                                      return 'Insira a Senha corretamente';
+                                      return 'Insira o Bairro corretamente';
                                     }
-                                  }, enabled: true,
+                                  },
+                                  enabled: true,
+                                  obscure: false,
                                 ),
                                 SizedBox(height: 15),
                                 RegistrationDefaultTextField(
                                   length: 20,
                                   hintText: "Cidade",
                                   textInputType: TextInputType.text,
-                                  controller: _controller.passwordController,
+                                  controller: _controller.cidadeController,
                                   validation: (String value) {
-                                    if (_controller.validatePassWordField(value) ==
+                                    if (_controller
+                                            .validatePassWordField(value) ==
                                         false) {
-                                      return 'Insira a Senha corretamente';
+                                      return 'Insira a Cidade corretamente';
                                     }
-                                  }, enabled: true,
+                                  },
+                                  enabled: true,
+                                  obscure: false,
                                 ),
                               ],
                             ),
                           ),
                           Padding(
-                              padding: const EdgeInsets.all(15.0),
+                            padding: const EdgeInsets.all(15.0),
                             child: Container(
                               width: MediaQuery.of(context).size.width * 0.25,
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                verticalDirection: VerticalDirection.up,
                                 children: [
                                   RegistrationDefaultTextField(
                                     length: 20,
                                     hintText: "Estado",
                                     textInputType: TextInputType.text,
-                                    controller: _controller.passwordController,
+                                    controller: _controller.ufController,
                                     validation: (String value) {
-                                      if (_controller.validatePassWordField(value) ==
+                                      if (_controller
+                                              .validateUfField(value) ==
                                           false) {
-                                        return 'Insira a Senha corretamente';
+                                        return 'Insira o Estado corretamente';
                                       }
-                                    }, enabled: true,
+                                    },
+                                    enabled: true,
+                                    obscure: false,
                                   ),
                                   SizedBox(height: 15),
                                   RegistrationDefaultTextField(
                                     length: 20,
-                                    hintText: "Pais",
+                                    hintText: "País",
                                     textInputType: TextInputType.text,
-                                    controller: _controller.passwordController,
+                                    controller: _controller.paisController,
                                     validation: (String value) {
-                                      if (_controller.validatePassWordField(value) ==
+                                      if (_controller
+                                              .validateLogradouroField(value) ==
                                           false) {
-                                        return 'Insira a Senha corretamente';
+                                        return 'Insira o país corretamente';
                                       }
-                                    }, enabled: true,
+                                    },
+                                    enabled: true,
+                                    obscure: false,
                                   ),
-
-
                                 ],
                               ),
                             ),
                           ),
                         ],
                       ),
+                       Column(
+                          children: [
+                            _controller.nameController.text.isNotEmpty &&
+                                _controller.cpfController.text.isNotEmpty &&
+                                _controller.pisController.text.isNotEmpty &&
+                                _controller.emailController.text.isNotEmpty &&
+                                _controller.passwordController.text.isNotEmpty &&
+                                _controller.cepController.text.isNotEmpty &&
+                                _controller.logradouroController.text.isNotEmpty &&
+                                _controller.numeroController.text.isNotEmpty &&
+                                _controller.bairroController.text.isNotEmpty &&
+                                _controller.cidadeController.text.isNotEmpty &&
+                                _controller.ufController.text.isNotEmpty &&
+                                _controller.paisController.text.isNotEmpty
+                                ? FadeInDown(
+                                    delay: Duration(milliseconds: 200),
+                                    child: TextButton(
+                                      child: Text(
+                                        "Concluir cadastro",
+                                        style: GoogleFonts.nunito(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w800,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      onPressed: () {
+
+                                      },
+                                    ),
+                                  )
+                                : Container(),
+                          ],
+                        ),
+
                     ],
                   ),
-                  
-                )
-            )
-        ),
+                )),
       ),
-
     );
   }
 }
