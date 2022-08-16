@@ -11,12 +11,13 @@ abstract class _AuthStoreBase with Store {
 
   @action
   Future VerificarUserLogado()  async {
-    User? user = auth.currentUser;
-    if (user != null) {
-      Modular.to.navigate('/home');
-    } else{
-      Modular.to.navigate('/login');
-    }
+    // User? user = auth.currentUser;
+    // if (user != null) {
+    //   Modular.to.navigate('/home');
+    // } else{
+    //   Modular.to.navigate('/login');
+    // }
+    Modular.to.navigate("/login");
   }
 
 }

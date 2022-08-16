@@ -19,9 +19,9 @@ class AppModule extends Module {
   ];
 
   @override
-  final List<ModularRoute> routes = [
-    ModuleRoute("/", module: AuthModule()),
-    ModuleRoute("/login", module: LoginModule()),
+  List<ModularRoute> get routes => [
+    ModuleRoute("/auth", module: AuthModule()),
+    ModuleRoute("/", module: LoginModule()),
     ModuleRoute("/registration", module: RegistrationModule()),
     ModuleRoute("/home", module: HomeModule()),
 

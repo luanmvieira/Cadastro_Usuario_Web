@@ -1,6 +1,7 @@
 import 'package:cadastro_usuario_web/app/widgets/custom_animated_button.dart';
 import 'package:cadastro_usuario_web/app/widgets/custom_input.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -92,6 +93,7 @@ class CustomLogin extends StatelessWidget {
                                 ),
                               ),
                               onTap: () {
+                                Modular.to.navigate("/registration");
                               },
                             ),
                           ),

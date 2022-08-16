@@ -1,25 +1,29 @@
-import 'package:cadastro_usuario_web/app/modules/registration/store/registration_store.dart';
+import 'package:cadastro_usuario_web/app/modules/login/store/login_store.dart';
+import 'package:cadastro_usuario_web/app/modules/login/view/login_desktop.dart';
+import 'package:cadastro_usuario_web/app/modules/registration/view/registration_desktop.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class RegistrationPage extends StatefulWidget {
-  final String title;
-  const RegistrationPage({Key? key, this.title = 'RegistrationPage'}) : super(key: key);
+
   @override
-  RegistrationPageState createState() => RegistrationPageState();
+  _RegistrationPageState createState() => _RegistrationPageState();
 }
-class RegistrationPageState extends State<RegistrationPage> {
-  final RegistrationStore store = Modular.get();
+
+class _RegistrationPageState extends ModularState<RegistrationPage, LoginStore> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Column(
-        children: <Widget>[],
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        backgroundColor: Color(0xff1F1F30),
+        body: ScreenTypeLayout(
+          desktop: RegistrationDesktop(),
+          mobile: RegistrationDesktop(),
+        ),
       ),
     );
   }
