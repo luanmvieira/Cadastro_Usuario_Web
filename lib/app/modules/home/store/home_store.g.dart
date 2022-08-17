@@ -73,6 +73,22 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
+  late final _$resultadoAtom =
+      Atom(name: 'HomeStoreBase.resultado', context: context);
+
+  @override
+  bool get resultado {
+    _$resultadoAtom.reportRead();
+    return super.resultado;
+  }
+
+  @override
+  set resultado(bool value) {
+    _$resultadoAtom.reportWrite(value, super.resultado, () {
+      super.resultado = value;
+    });
+  }
+
   late final _$getCurrentUserAsyncAction =
       AsyncAction('HomeStoreBase.getCurrentUser', context: context);
 
@@ -89,13 +105,47 @@ mixin _$HomeStore on HomeStoreBase, Store {
     return _$logOutAsyncAction.run(() => super.logOut());
   }
 
+  late final _$retornarInfosCepAsyncAction =
+      AsyncAction('HomeStoreBase.retornarInfosCep', context: context);
+
+  @override
+  Future retornarInfosCep(String cep) {
+    return _$retornarInfosCepAsyncAction.run(() => super.retornarInfosCep(cep));
+  }
+
+  late final _$HomeStoreBaseActionController =
+      ActionController(name: 'HomeStoreBase', context: context);
+
+  @override
+  void checkUserLoggedIn() {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.checkUserLoggedIn');
+    try {
+      return super.checkUserLoggedIn();
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setUser(UserModel userSet) {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.setUser');
+    try {
+      return super.setUser(userSet);
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 nameCurrentUser: ${nameCurrentUser},
 logOutstate: ${logOutstate},
 currentUserModel: ${currentUserModel},
-getValidator: ${getValidator}
+getValidator: ${getValidator},
+resultado: ${resultado}
     ''';
   }
 }

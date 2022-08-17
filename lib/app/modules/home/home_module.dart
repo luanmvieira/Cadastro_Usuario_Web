@@ -1,3 +1,4 @@
+import 'package:cadastro_usuario_web/app/modules/home/views/edit_profile_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'store/home_store.dart';
 
@@ -11,6 +12,7 @@ class HomeModule extends Module {
 
  @override
  final List<ModularRoute> routes = [
-   ChildRoute(Modular.initialRoute, child: (_, args) => HomePage()),
+   ChildRoute('/', child: (_, args) => HomePage()),
+   ChildRoute('/profile', child: (_, args) => EditProfilePage()),
  ];
 }

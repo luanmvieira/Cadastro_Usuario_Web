@@ -10,6 +10,11 @@ class ConexaoFirebaseHome{
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   UserModel _userm = UserModel();
 
+  bool checkCurrentUser() {
+    User? user = auth.currentUser;
+    return user != null ? true : false;
+  }
+
   Future <UserModel> getCurrentUser() async{
         QuerySnapshot _userQuery = await _db.collection("usuarios").where("email", isEqualTo: auth.currentUser?.email).get();
         if(_userQuery.docs.isNotEmpty){

@@ -1,17 +1,18 @@
 import 'package:cadastro_usuario_web/app/modules/home/store/home_store.dart';
+import 'package:cadastro_usuario_web/app/modules/home/views/edit_profile_desktop.dart';
 import 'package:cadastro_usuario_web/app/modules/home/views/home_desktop.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class HomePage extends StatefulWidget {
+class EditProfilePage extends StatefulWidget {
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _EditProfilePageState createState() => _EditProfilePageState();
 }
 
-class _HomePageState extends ModularState<HomePage, HomeStore> {
+class _EditProfilePageState extends ModularState<EditProfilePage, HomeStore> {
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +21,8 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
       child: Scaffold(
         backgroundColor: Color(0xff1F1F30),
         body: ScreenTypeLayout(
-          desktop: HomeDesktop(),
-          mobile: HomeDesktop(),
+          desktop: EditProfileDesktop(),
+          mobile: EditProfileDesktop(),
         ),
       ),
     );

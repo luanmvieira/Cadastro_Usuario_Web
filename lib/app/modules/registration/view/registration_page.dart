@@ -1,4 +1,5 @@
 import 'package:cadastro_usuario_web/app/modules/login/store/login_store.dart';
+import 'package:cadastro_usuario_web/app/modules/registration/store/registration_store.dart';
 import 'package:cadastro_usuario_web/app/modules/registration/view/registration_desktop.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -11,7 +12,7 @@ class RegistrationPage extends StatefulWidget {
   _RegistrationPageState createState() => _RegistrationPageState();
 }
 
-class _RegistrationPageState extends ModularState<RegistrationPage, LoginStore> {
+class _RegistrationPageState extends ModularState<RegistrationPage, RegistrationStore> {
 
   @override
   Widget build(BuildContext context) {

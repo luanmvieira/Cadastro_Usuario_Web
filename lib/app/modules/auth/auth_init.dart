@@ -12,7 +12,7 @@ class InitAuth extends StatefulWidget {
 class _InitAuthState extends ModularState<InitAuth, AuthStore> {
   @override
   void initState() {
-    Modular.to.navigate("/login");
+    controller.checkCurrentUser();
     super.initState();
   }
 
@@ -23,7 +23,7 @@ class _InitAuthState extends ModularState<InitAuth, AuthStore> {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
+            children: <Widget>[
               Center(child: SpinKitWave(color: Colors.white, size: 45,))
             ],
           ),
