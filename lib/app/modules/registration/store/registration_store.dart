@@ -1,7 +1,10 @@
 import 'dart:convert';
 
 import 'package:brasil_fields/brasil_fields.dart';
+import 'package:cadastro_usuario_web/app/models/user_model.dart';
+import 'package:cadastro_usuario_web/app/modules/registration/repositories/db_registration.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mobx/mobx.dart';
@@ -10,15 +13,18 @@ import 'package:http/http.dart' as http;
 part 'registration_store.g.dart';
 
 class RegistrationStore = _RegistrationStoreBase with _$RegistrationStore;
+
 abstract class _RegistrationStoreBase with Store {
-  // Cadastro Pessoal
+  FirebaseAuth auth = FirebaseAuth.instance;
+  ConexaoFirebaseCadastro dbCadastro = ConexaoFirebaseCadastro();
+  // Controlers Cadastro dados pessoais
   final nameController = TextEditingController();
   final cpfController = TextEditingController();
   final pisController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  //Cadastro Endereço
+  //Controlers Cadastro Endereço
   final cepController = TextEditingController();
   final logradouroController = TextEditingController();
   final numeroController = TextEditingController();
@@ -28,6 +34,13 @@ abstract class _RegistrationStoreBase with Store {
   final ufController = TextEditingController();
   final paisController = TextEditingController();
 
+  @observable
+  UserModel usuario = UserModel();
+  @observable
+  bool resultUsuario = false;
+
+
+  //Validadores
   bool validateNameField(String name) {
     if (name != null && name.length != 0 && name.length > 6) return true;
 
@@ -72,6 +85,7 @@ abstract class _RegistrationStoreBase with Store {
 
     return false;
   }
+  //Função de consulta a API VIA CEP
   @action
   retornarInfosCep(String cep) async {
     print("Entrou na func");
@@ -95,6 +109,36 @@ abstract class _RegistrationStoreBase with Store {
       Fluttertoast.showToast(msg:'CEP INVÁLIDO');
     }
     print("Terminou a func");
+
+  }
+  //Função de Cadastrar Usuário
+  @action
+  CadastrarUser () async{
+    dynamic resultCadastro = false;
+    usuario.username = nameController.text;
+    usuario.cpf = cpfController.text;
+    usuario.pis = pisController.text;
+    usuario.email = emailController.text;
+    usuario.password = passwordController.text;
+    usuario.cep = cepController.text;
+    usuario.logradouro = logradouroController.text;
+    usuario.numero = numeroController.text;
+    usuario.bairro = bairroController.text;
+    usuario.cidade = cidadeController.text;
+    usuario.uf = ufController.text;
+    usuario.pais = paisController.text;
+    resultCadastro = await dbCadastro.CadastrarUsuario(usuario);
+    if (resultCadastro != true) {
+      print("----------Error ao criar User");
+      resultUsuario = false;
+    } else {
+      Fluttertoast.showToast(msg:'CADASTRO EFETUADO COM SUCESSO');
+      print("novo usuario criado com sucesso:" + usuario.email.toString());
+      print("---------Sucesso");
+      resultUsuario = true;
+    }
+
+
 
   }
 }

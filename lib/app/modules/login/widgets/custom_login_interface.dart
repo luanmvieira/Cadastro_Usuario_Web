@@ -1,3 +1,4 @@
+import 'package:cadastro_usuario_web/app/modules/login/store/login_store.dart';
 import 'package:cadastro_usuario_web/app/widgets/custom_animated_button.dart';
 import 'package:cadastro_usuario_web/app/widgets/custom_input.dart';
 import 'package:flutter/material.dart';
@@ -6,21 +7,19 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomLogin extends StatelessWidget {
+  final LoginStore store;
   final double paddingHorizontal;
   final bool carregando;
   final TextEditingController emailController;
   final TextEditingController senhaController;
-  final Function setEmail;
-  final Function setSenha;
-
   const CustomLogin(
       {Key? key,
       this.paddingHorizontal = 100.0,
       required this.carregando,
       required this.emailController,
       required this.senhaController,
-      required this.setEmail,
-      required this.setSenha,})
+        required this.store,
+      })
       : super(key: key);
 
   @override
@@ -74,7 +73,12 @@ class CustomLogin extends StatelessWidget {
                           ),
                           const SizedBox(height: 30),
                           CustomAnimatedButton(
-                            onTap: () {
+                            onTap: () async {
+                              await store.RealizarLogin();
+                              if(store.resultLogin==true){
+                                Modular.to.navigate("/home");
+                              }
+
                             },
                             widhtMultiply: 1,
                             height: 50,

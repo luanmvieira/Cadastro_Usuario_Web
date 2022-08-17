@@ -56,8 +56,7 @@ class RegistrationDesktop extends StatelessWidget {
                                     enabled: true,
                                     obscure: false,
                                     validation: (String value) {
-                                      if (_controller
-                                              .validateNameField(value) ==
+                                      if (_controller.validateNameField(value) ==
                                           false) {
                                         return 'Insira o seu Nome e Sobrenome';
                                       }
@@ -335,7 +334,11 @@ class RegistrationDesktop extends StatelessWidget {
                                           color: Colors.black,
                                         ),
                                       ),
-                                      onPressed: () {
+                                      onPressed: () async {
+                                        await _controller.CadastrarUser();
+                                        if(_controller.resultUsuario==true){
+                                          Modular.to.navigate("/");
+                                        }
 
                                       },
                                     ),

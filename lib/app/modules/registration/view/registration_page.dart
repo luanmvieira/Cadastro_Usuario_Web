@@ -1,5 +1,4 @@
 import 'package:cadastro_usuario_web/app/modules/login/store/login_store.dart';
-import 'package:cadastro_usuario_web/app/modules/login/view/login_desktop.dart';
 import 'package:cadastro_usuario_web/app/modules/registration/view/registration_desktop.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

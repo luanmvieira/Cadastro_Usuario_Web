@@ -41,10 +41,9 @@ class LoginDesktop extends StatelessWidget {
                       ),
                       child: CustomLogin(
                           carregando: _controller.carregando,
-                          emailController: _controller.emailController,
-                          senhaController: _controller.senhaController,
-                          setEmail: _controller.setEmail,
-                          setSenha: _controller.setSenha,
+                          emailController: _controller.loginController,
+                          senhaController: _controller.passwordController,
+                          store:_controller,
                       ),
                     )
                 )
