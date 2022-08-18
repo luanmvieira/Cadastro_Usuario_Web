@@ -1,5 +1,6 @@
 import 'package:cadastro_usuario_web/app/modules/login/store/login_store.dart';
 import 'package:cadastro_usuario_web/app/modules/login/view/login_desktop.dart';
+import 'package:cadastro_usuario_web/app/modules/login/view/login_mobile.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
         backgroundColor: Color(0xff1F1F30),
         body: ScreenTypeLayout(
           desktop: LoginDesktop(),
-          mobile: LoginDesktop(),
+          mobile: LoginMobile(),
         ),
       ),
     );

@@ -1,6 +1,6 @@
 import 'package:cadastro_usuario_web/app/modules/home/store/home_store.dart';
 import 'package:cadastro_usuario_web/app/modules/home/views/edit_profile_desktop.dart';
-import 'package:cadastro_usuario_web/app/modules/home/views/home_desktop.dart';
+import 'package:cadastro_usuario_web/app/modules/home/views/edit_profile_mobile.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:flutter/material.dart';
@@ -27,7 +27,7 @@ class _EditProfilePageState extends ModularState<EditProfilePage, HomeStore> {
         backgroundColor: Color(0xff1F1F30),
         body: ScreenTypeLayout(
           desktop: EditProfileDesktop(),
-          mobile: EditProfileDesktop(),
+          mobile: EditProfileMobile(),
         ),
       ),
     );

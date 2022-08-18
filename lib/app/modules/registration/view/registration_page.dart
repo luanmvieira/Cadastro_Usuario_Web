@@ -1,6 +1,6 @@
-import 'package:cadastro_usuario_web/app/modules/login/store/login_store.dart';
 import 'package:cadastro_usuario_web/app/modules/registration/store/registration_store.dart';
 import 'package:cadastro_usuario_web/app/modules/registration/view/registration_desktop.dart';
+import 'package:cadastro_usuario_web/app/modules/registration/view/registration_mobile.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class _RegistrationPageState extends ModularState<RegistrationPage, Registration
         backgroundColor: Color(0xff1F1F30),
         body: ScreenTypeLayout(
           desktop: RegistrationDesktop(),
-          mobile: RegistrationDesktop(),
+          mobile: RegistrationMobile(),
         ),
       ),
     );
