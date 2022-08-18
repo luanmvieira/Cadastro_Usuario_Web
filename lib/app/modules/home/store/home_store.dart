@@ -16,7 +16,7 @@ part 'home_store.g.dart';
 
 class HomeStore = HomeStoreBase with _$HomeStore;
 ConexaoFirebaseLogin _dbloginHome = ConexaoFirebaseLogin();
-
+ConexaoFirebaseHome _dbHome = ConexaoFirebaseHome ();
 
 abstract class HomeStoreBase with Store {
   ConexaoFirebaseHome homeRepositories = ConexaoFirebaseHome();
@@ -36,16 +36,27 @@ abstract class HomeStoreBase with Store {
   final updatePaisController = TextEditingController();
 
   @observable
+  UserModel userModelHome = UserModel();
+
+  @observable
+  bool resultEditUsuario = false;
+
+  @observable
   String nameCurrentUser = '';
 
   @observable
   bool logOutstate = false;
+  @observable
+  bool deleteState = false;
 
   @observable
   UserModel currentUserModel = UserModel();
 
+
   @observable
   bool getValidator = true;
+  @observable
+  bool deleteValidator = true;
 
   final acesso = ConexaoFirebaseHome();
 
@@ -77,6 +88,21 @@ abstract class HomeStoreBase with Store {
     updateUfController.text = userSet.uf;
     updatePaisController.text = userSet.pais;
   }
+  @action
+  void resetUser(){
+    updateNameController.text = "";
+    updateCpfController.text = "";
+    updatePisController.text = "";
+    updateEmailController.text = "";
+
+    updateCepController.text = "";
+    updateLogradouroController.text = "";
+    updateNumeroController.text = "";
+    updateBairroController.text = "";
+    updateCidadeController.text = "";
+    updateUfController.text = "";
+    updatePaisController.text = "";
+  }
 
   @action
   Future<void> getCurrentUser() async {
@@ -93,11 +119,26 @@ abstract class HomeStoreBase with Store {
     logOutstate = await _dbloginHome.logout();
     if(logOutstate == true){
       Modular.to.navigate("/");
-      Fluttertoast.showToast(msg: 'LOGOUT EFETUADO COM SUCESSO');
+      Fluttertoast.showToast(msg: 'LOGOUT EFETUADO COM SUCESSO', timeInSecForIosWeb:3);
       getValidator = true;
     }else{
-      Fluttertoast.showToast(msg: 'LOGOUT NÃO EFETUADO');
+      Fluttertoast.showToast(msg: 'LOGOUT NÃO EFETUADO', timeInSecForIosWeb:3);
       getValidator = true;
+    }
+  }
+
+  @action
+  Future deleteUser() async {
+    resultEditUsuario = false;
+    await getCurrentUser();
+    deleteState = await _dbHome.DeleteUserBd(currentUserModel.cpf);
+    if(deleteState == true){
+      Modular.to.navigate("/");
+      Fluttertoast.showToast(msg: 'DELETE EFETUADO COM SUCESSO', timeInSecForIosWeb:3);
+      resultEditUsuario = true;
+    }else{
+      Fluttertoast.showToast(msg: 'DELETE NÃO EFETUADO', timeInSecForIosWeb:3);
+      resultEditUsuario = true;
     }
   }
 
@@ -123,6 +164,36 @@ abstract class HomeStoreBase with Store {
       Fluttertoast.showToast(msg:'CEP INVÁLIDO');
     }
     print("Terminou a func");
+
+  }
+
+  //Função de Cadastrar Usuário
+  @action
+  EditarUser () async{
+    dynamic resultCadastro = false;
+    userModelHome.username = updateNameController.text;
+    userModelHome.cpf = updateCpfController.text;
+    userModelHome.pis = updatePisController.text;
+    userModelHome.email = updateEmailController.text;
+    userModelHome.cep = updateCepController.text;
+    userModelHome.logradouro = updateLogradouroController.text;
+    userModelHome.numero = updateNumeroController.text;
+    userModelHome.bairro = updateBairroController.text;
+    userModelHome.cidade = updateCidadeController.text;
+    userModelHome.uf = updateUfController.text;
+    userModelHome.pais = updatePaisController.text;
+    resultCadastro = await _dbHome.EditarUsuario(userModelHome);
+    if (resultCadastro != true) {
+      print("----------Error ao editar User");
+      resultEditUsuario = false;
+    } else {
+      Fluttertoast.showToast(msg:'EDIÇÃO EFETUADA COM SUCESSO', timeInSecForIosWeb:5);
+      print("novo usuario criado com sucesso:" + userModelHome.email.toString());
+      print("---------Sucesso");
+      resultEditUsuario = true;
+    }
+
+
 
   }
   //Validadores

@@ -1,6 +1,7 @@
 import 'package:cadastro_usuario_web/app/models/user_model.dart';
 import 'package:cadastro_usuario_web/app/modules/login/repositories/db_login.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mobx/mobx.dart';
 
@@ -18,10 +19,6 @@ abstract class _LoginStoreBase with Store {
   final passwordController = TextEditingController();
 
   @observable
-  UserModel usuario = UserModel();
-  @observable
-  bool resultLogin = false;
-  @observable
   bool progressLogin = false;
 
 
@@ -32,16 +29,19 @@ abstract class _LoginStoreBase with Store {
 
   @action
   Future RealizarLogin() async {
+    var resultLogin;
     progressLogin = true;
-    usuarioLogin = await dblogin.getUserData(loginController.text);
-    usuario.email = usuarioLogin.email;
-    usuario.password = passwordController.text;
-    resultLogin = await dblogin.logarUsuario(usuario);
-    if (resultLogin != true) {
-      Fluttertoast.showToast(msg: 'ERRO NO LOGIN, REVISE SUAS CREDENCIAIS');
+    usuarioLogin = await dblogin.getUserDataLogin(loginController.text);
+    usuarioLogin.email = usuarioLogin.email;
+    usuarioLogin.password = passwordController.text;
+    resultLogin = await dblogin.logarUsuario(usuarioLogin);
+    if (resultLogin == true){
+      Modular.to.navigate("/home");
+      Fluttertoast.showToast(msg: 'LOGIN EFETUADO COM SUCESSO', timeInSecForIosWeb:3);
     } else {
-      Fluttertoast.showToast(msg: 'LOGIN EFETUADO COM SUCESSO');
+      Fluttertoast.showToast(msg: 'REVISE SUAS CREDENCIAIS', timeInSecForIosWeb:3);
     }
+
     progressLogin = false;
   }
 }

@@ -28,7 +28,7 @@ dependencies:
 
   #dependencias Firebase
   cloud_firestore: ^3.4.4
-  firebase_auth: ^3.6.3
+  firebase_auth: ^3.6.4
   firebase_auth_web: ^4.2.3
   firebase_core: ^1.20.1
   firebase_core_web: ^1.7.1
@@ -49,6 +49,7 @@ flutter:
 
   assets:
     - assets/Lottie/login.json
+    - assets/images/google_icon.png
 
 vars:
   clean: flutter clean

@@ -19,8 +19,8 @@ class HomeDesktop extends StatefulWidget {
 class _HomeDesktopState extends ModularState<HomeDesktop, HomeStore> {
   @override
   void initState() {
-    controller.getCurrentUser();
     controller.checkUserLoggedIn();
+    controller.getCurrentUser();
     super.initState();
   }
   @override

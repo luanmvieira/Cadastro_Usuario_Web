@@ -9,6 +9,38 @@ part of 'home_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$HomeStore on HomeStoreBase, Store {
+  late final _$userModelHomeAtom =
+      Atom(name: 'HomeStoreBase.userModelHome', context: context);
+
+  @override
+  UserModel get userModelHome {
+    _$userModelHomeAtom.reportRead();
+    return super.userModelHome;
+  }
+
+  @override
+  set userModelHome(UserModel value) {
+    _$userModelHomeAtom.reportWrite(value, super.userModelHome, () {
+      super.userModelHome = value;
+    });
+  }
+
+  late final _$resultEditUsuarioAtom =
+      Atom(name: 'HomeStoreBase.resultEditUsuario', context: context);
+
+  @override
+  bool get resultEditUsuario {
+    _$resultEditUsuarioAtom.reportRead();
+    return super.resultEditUsuario;
+  }
+
+  @override
+  set resultEditUsuario(bool value) {
+    _$resultEditUsuarioAtom.reportWrite(value, super.resultEditUsuario, () {
+      super.resultEditUsuario = value;
+    });
+  }
+
   late final _$nameCurrentUserAtom =
       Atom(name: 'HomeStoreBase.nameCurrentUser', context: context);
 
@@ -38,6 +70,22 @@ mixin _$HomeStore on HomeStoreBase, Store {
   set logOutstate(bool value) {
     _$logOutstateAtom.reportWrite(value, super.logOutstate, () {
       super.logOutstate = value;
+    });
+  }
+
+  late final _$deleteStateAtom =
+      Atom(name: 'HomeStoreBase.deleteState', context: context);
+
+  @override
+  bool get deleteState {
+    _$deleteStateAtom.reportRead();
+    return super.deleteState;
+  }
+
+  @override
+  set deleteState(bool value) {
+    _$deleteStateAtom.reportWrite(value, super.deleteState, () {
+      super.deleteState = value;
     });
   }
 
@@ -73,6 +121,22 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
+  late final _$deleteValidatorAtom =
+      Atom(name: 'HomeStoreBase.deleteValidator', context: context);
+
+  @override
+  bool get deleteValidator {
+    _$deleteValidatorAtom.reportRead();
+    return super.deleteValidator;
+  }
+
+  @override
+  set deleteValidator(bool value) {
+    _$deleteValidatorAtom.reportWrite(value, super.deleteValidator, () {
+      super.deleteValidator = value;
+    });
+  }
+
   late final _$resultadoAtom =
       Atom(name: 'HomeStoreBase.resultado', context: context);
 
@@ -105,12 +169,28 @@ mixin _$HomeStore on HomeStoreBase, Store {
     return _$logOutAsyncAction.run(() => super.logOut());
   }
 
+  late final _$deleteUserAsyncAction =
+      AsyncAction('HomeStoreBase.deleteUser', context: context);
+
+  @override
+  Future<dynamic> deleteUser() {
+    return _$deleteUserAsyncAction.run(() => super.deleteUser());
+  }
+
   late final _$retornarInfosCepAsyncAction =
       AsyncAction('HomeStoreBase.retornarInfosCep', context: context);
 
   @override
   Future retornarInfosCep(String cep) {
     return _$retornarInfosCepAsyncAction.run(() => super.retornarInfosCep(cep));
+  }
+
+  late final _$EditarUserAsyncAction =
+      AsyncAction('HomeStoreBase.EditarUser', context: context);
+
+  @override
+  Future EditarUser() {
+    return _$EditarUserAsyncAction.run(() => super.EditarUser());
   }
 
   late final _$HomeStoreBaseActionController =
@@ -139,12 +219,27 @@ mixin _$HomeStore on HomeStoreBase, Store {
   }
 
   @override
+  void resetUser() {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.resetUser');
+    try {
+      return super.resetUser();
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+userModelHome: ${userModelHome},
+resultEditUsuario: ${resultEditUsuario},
 nameCurrentUser: ${nameCurrentUser},
 logOutstate: ${logOutstate},
+deleteState: ${deleteState},
 currentUserModel: ${currentUserModel},
 getValidator: ${getValidator},
+deleteValidator: ${deleteValidator},
 resultado: ${resultado}
     ''';
   }

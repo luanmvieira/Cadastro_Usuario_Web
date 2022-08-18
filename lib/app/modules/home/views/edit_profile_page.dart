@@ -13,6 +13,11 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends ModularState<EditProfilePage, HomeStore> {
+  @override
+  void initState() {
+    controller.getCurrentUser();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

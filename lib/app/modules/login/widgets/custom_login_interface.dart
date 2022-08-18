@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class CustomLogin extends StatelessWidget {
   final LoginStore store;
@@ -73,18 +74,15 @@ class CustomLogin extends StatelessWidget {
                           ),
                           const SizedBox(height: 30),
                           CustomAnimatedButton(
-                            onTap: () async {
-                              await store.RealizarLogin();
-                              if(store.resultLogin==true){
-                                Modular.to.navigate("/home");
-                              }
-
+                            onTap: () {
+                              store.RealizarLogin();
                             },
                             widhtMultiply: 1,
                             height: 50,
                             color: Colors.deepPurpleAccent,
                             text: "Entrar",
                           ),
+                          const SizedBox(height: 30),
                           Container(
                             height: 40,
                             alignment: Alignment.center,

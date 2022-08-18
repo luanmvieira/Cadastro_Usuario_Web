@@ -25,38 +25,6 @@ mixin _$LoginStore on _LoginStoreBase, Store {
     });
   }
 
-  late final _$usuarioAtom =
-      Atom(name: '_LoginStoreBase.usuario', context: context);
-
-  @override
-  UserModel get usuario {
-    _$usuarioAtom.reportRead();
-    return super.usuario;
-  }
-
-  @override
-  set usuario(UserModel value) {
-    _$usuarioAtom.reportWrite(value, super.usuario, () {
-      super.usuario = value;
-    });
-  }
-
-  late final _$resultLoginAtom =
-      Atom(name: '_LoginStoreBase.resultLogin', context: context);
-
-  @override
-  bool get resultLogin {
-    _$resultLoginAtom.reportRead();
-    return super.resultLogin;
-  }
-
-  @override
-  set resultLogin(bool value) {
-    _$resultLoginAtom.reportWrite(value, super.resultLogin, () {
-      super.resultLogin = value;
-    });
-  }
-
   late final _$progressLoginAtom =
       Atom(name: '_LoginStoreBase.progressLogin', context: context);
 
@@ -101,8 +69,6 @@ mixin _$LoginStore on _LoginStoreBase, Store {
   String toString() {
     return '''
 usuarioLogin: ${usuarioLogin},
-usuario: ${usuario},
-resultLogin: ${resultLogin},
 progressLogin: ${progressLogin},
 carregando: ${carregando}
     ''';

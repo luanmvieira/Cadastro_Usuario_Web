@@ -11,47 +11,47 @@ class LoginDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.7,
-        width: MediaQuery.of(context).size.width * 0.7,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.0),
-          color: Colors.deepPurpleAccent,//Color(0xff1F1F30)
-        ),
-        child: Row(
-          children: [
-            Expanded(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Lottie.asset('assets/Lottie/login.json',),
-                )
-            ),
-            Expanded(
-                flex: 1,
-                child: Observer(
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.7,
+          width: MediaQuery.of(context).size.width * 0.7,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.0),
+            color: Colors.deepPurpleAccent,//Color(0xff1F1F30)
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Lottie.asset('assets/Lottie/login.json',),
+                  )
+              ),
+              Expanded(
+                  flex: 1,
+                  child: Observer(
                     builder: (_) => Container(
-                      height: MediaQuery.of(context).size.height,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(20.0),
-                          topRight: Radius.circular(20.0),
+                          height: MediaQuery.of(context).size.height,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(20.0),
+                              topRight: Radius.circular(20.0),
+                            ),
+                            color: Colors.white,
+                          ),
+                          child: CustomLogin(
+                              carregando: _controller.progressLogin,
+                              emailController: _controller.loginController,
+                              senhaController: _controller.passwordController,
+                              store:_controller,
+                          )
                         ),
-                        color: Colors.white,
-                      ),
-                      child: CustomLogin(
-                          carregando: _controller.carregando,
-                          emailController: _controller.loginController,
-                          senhaController: _controller.passwordController,
-                          store:_controller,
-                      ),
-                    )
-                )
-            )
-          ],
+                  )
+              )
+            ],
+          ),
         ),
-      ),
 
-    );
+      );
   }
 }

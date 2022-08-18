@@ -18,21 +18,35 @@ abstract class _RegistrationStoreBase with Store {
   FirebaseAuth auth = FirebaseAuth.instance;
   ConexaoFirebaseCadastro dbCadastro = ConexaoFirebaseCadastro();
   // Controlers Cadastro dados pessoais
-  final nameController = TextEditingController();
-  final cpfController = TextEditingController();
-  final pisController = TextEditingController();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  @observable
+  TextEditingController nameController = TextEditingController();
+  @observable
+  TextEditingController cpfController = TextEditingController();
+  @observable
+  TextEditingController pisController = TextEditingController();
+  @observable
+  TextEditingController emailController = TextEditingController();
+  @observable
+  TextEditingController passwordController = TextEditingController();
+
 
   //Controlers Cadastro Endereço
-  final cepController = TextEditingController();
-  final logradouroController = TextEditingController();
-  final numeroController = TextEditingController();
-  final complementoController = TextEditingController();
-  final bairroController = TextEditingController();
-  final cidadeController = TextEditingController();
-  final ufController = TextEditingController();
-  final paisController = TextEditingController();
+  @observable
+  TextEditingController cepController = TextEditingController();
+  @observable
+  TextEditingController logradouroController = TextEditingController();
+  @observable
+  TextEditingController numeroController = TextEditingController();
+  @observable
+  TextEditingController complementoController = TextEditingController();
+  @observable
+  TextEditingController bairroController = TextEditingController();
+  @observable
+  TextEditingController cidadeController = TextEditingController();
+  @observable
+  TextEditingController ufController = TextEditingController();
+  @observable
+  TextEditingController paisController = TextEditingController();
 
   @observable
   UserModel usuario = UserModel();
@@ -114,6 +128,7 @@ abstract class _RegistrationStoreBase with Store {
   //Função de Cadastrar Usuário
   @action
   CadastrarUser () async{
+
     dynamic resultCadastro = false;
     usuario.username = nameController.text;
     usuario.cpf = cpfController.text;
