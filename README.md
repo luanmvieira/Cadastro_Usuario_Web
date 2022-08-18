@@ -1,7 +1,7 @@
 # Cadastro Usuario Web
 
 
--## Tecnologias
+## Tecnologias
 
 O que foi utilizado para criar o app:
 
