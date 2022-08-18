@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-
 class CustomLogin extends StatelessWidget {
   final LoginStore store;
   final double paddingHorizontal;

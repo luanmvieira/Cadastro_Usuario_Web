@@ -165,6 +165,8 @@ abstract class HomeStoreBase with Store {
     }
     print("Terminou a func");
 
+    return getCep.statusCode;
+
   }
 
   //Função de Cadastrar Usuário
