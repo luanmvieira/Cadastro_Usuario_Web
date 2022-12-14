@@ -1,5 +1,6 @@
 # Cadastro Usuario Web
 
+Crud utilizado para cadastro, edição e exclusão de cadastros.
 
 ## Tecnologias
 
@@ -11,4 +12,3 @@ O que foi utilizado para criar o app:
 - Mobx
 - Firebase
 
-Disponível em : https://cadastro-usuario-web1.herokuapp.com/
